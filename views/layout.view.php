@@ -68,7 +68,7 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-
+ 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.php" class="app-brand-link">
@@ -140,12 +140,19 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class=" menu-item <?php if($name === "index") {echo "active";}?>">
-              <a href="<?php ?>" class="menu-link">
+              <a href="<?php if($_SESSION['role'] ==="SuperAdmin"){echo "index.php";}else{echo "user.php";}?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-            <li class="menu-item <?php if($name === "users") {echo "active";}?>">
+            <li class="menu-item 
+            <?php 
+            if($name === "users") {echo "active";} 
+            ?>"
+            <?php
+            if($_SESSION['role'] ==="user"){echo "hidden";}
+            ?>
+            >
               <a href="users.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user me-1"></i>
                 <div data-i18n="Analytics">Manage users</div>

@@ -55,8 +55,8 @@ function is_user_authorised($role)
 {
   ensure_user_is_authenticated();
   if ($role === "SuperAdmin") {
-    redirect('index.php');
+    redirect('admin/index.php');
   } else {
-    redirect("userContributions.php");
+    redirect("user.php");
   }
 }

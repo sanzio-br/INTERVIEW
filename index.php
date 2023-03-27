@@ -6,14 +6,14 @@ require('app/app.php');
 if (empty($_SESSION['email'])) {
     redirect('login.php');
 } else {
-    $role = $_SESSION['email'];
+    $role = $_SESSION['role'];
     is_user_authorised($role);
     die();
 }
 
-$view_bag = [
-    'title' => 'Home',
-    'user' => $_SESSION['email']
-];
+// $view_bag = [
+//     'title' => 'Home',
+//     'user' => $_SESSION['email']
+// ];
 
-view('index', $view_bag);
+// view('index', $view_bag);

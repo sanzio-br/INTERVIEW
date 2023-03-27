@@ -126,7 +126,7 @@
                                             <td><?= $user->name ?></td>
                                             <td><?= $user->phone ?></td>
                                             <td><?= $user->email ?></td>
-                                            <td>Ksh 3000</td>
+                                            <td><?=$user->contributions?></td>
                                             <td><?php
                                                       if($user->active === 1){
                                                         echo "<span class=\"badge bg-label-primary me-1\"></span>active</span>";
@@ -166,6 +166,7 @@
                     <!--/ Striped Rows -->
                 </div>
             </div>
+            
         </div>
         <!-- / Content -->
 

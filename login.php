@@ -14,10 +14,14 @@ if (is_post()) {
     // compare store data 
     $user = authenticate_user($email, $password);
     if(!empty($user)){
-      $_SESSION['email'] = $user->role;
-      is_user_authorised($user->role);
-      // $_SESSION['role'] =$user->role;
-        
+      $_SESSION =[
+        "email" => $user->email,
+        "role"=>$user->role,
+        "name"=> $user->name,
+        "id"=>$user->id,
+        "phone"=>$user->id
+      ];
+      redirect('index.php');   
     }else{
         $error = "Wrong credentials please try again";
         $view_bag['status']= "Wrong credentials please try again";

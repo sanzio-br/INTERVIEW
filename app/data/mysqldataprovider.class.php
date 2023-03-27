@@ -10,7 +10,11 @@ class mysqlDataProvider extends DataProvider
 
     public function get_users()
     {
-        return $this->query('SELECT * FROM users');
+        return $this->query('SELECT id_number,name,phone,email,SUM(amount) AS contributions ,active FROM `tinypesa` JOIN `users` ON Uid = id GROUP BY Uid, name');
+    }
+    public function get_transactions()
+    {
+        return $this->query('SELECT * FROM tinypesa');
     }
 
     public function get_user($email)
@@ -92,6 +96,103 @@ class mysqlDataProvider extends DataProvider
                 ':active' => 1
             ]
         );
+    }
+    public function get_all_users_transactions($key)
+    {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return;
+        }
+
+        $sql = 'SELECT name FROM users FULL JOIN transactions on id = Uid';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':id' => $key,
+        ]);
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'user');
+
+        if (empty($data)) {
+            return;
+        }
+        $smt = null;
+        $db = null;
+
+        return $data[0];
+    }
+    public function add_user_transactions($id, $CheckoutRequestID, $ResultCode, $amount, $MpesaReceiptNumber, $PhoneNumber)
+    {
+        $this->execute('INSERT INTO tinypesa(ID,CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES (:ID :CheckoutRequestID,:ResultCode,:amount,:MpesaReceiptNumber,:PhoneNumber)', [
+            ":Uid" => $id,
+            ":CheckoutRequestID" => $CheckoutRequestID,
+            ":ResultCode" => $ResultCode,
+            ":amount" => $amount,
+            ":MpesaReceiptNumber" => $MpesaReceiptNumber,
+            ":PhoneNumber" => $PhoneNumber
+        ]);
+    }
+    public function get_users_transactions()
+    {
+        return $this->query('SELECT id, name, MpesaReceiptNumber, amount, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id');
+    }
+    public function get_user_transactions($id)
+    {
+        return $this->query("SELECT id, name, MpesaReceiptNumber, amount , time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id AND id = $id");
+    }
+    public function get_all_transactions_totals()
+    {
+        return $this->query('SELECT SUM(amount) FROM `tinypesa`');
+    }
+    public function get_user_transactions_totals($id)
+    {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return;
+        }
+
+        $sql = 'SELECT SUM(amount) FROM `tinypesa` WHERE Uid = :id';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':id' => $id,
+        ]);
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'user');
+
+        if (empty($data)) {
+            return;
+        }
+        $smt = null;
+        $db = null;
+
+        return $data[0];
+
+    }
+    public function get_all_user_transactions_totals()
+    {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return;
+        }
+
+        $sql = 'SELECT SUM(amount) FROM `tinypesa` WHERE Uid = id ';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':id' => $id,
+        ]);
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'user');
+
+        if (empty($data)) {
+            return;
+        }
+        $smt = null;
+        $db = null;
+
+        return $data[0];
+
     }
     public function delete_user($key)
     {
