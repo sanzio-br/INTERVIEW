@@ -1,7 +1,5 @@
 <?php
 require('app/app.php');
-
-ensure_user_is_authenticated();
 header("Content-Type: application/json");
 
 $stkCallbackResponse = file_get_contents('php://input');
@@ -10,7 +8,10 @@ $log = fopen($logFile, "a");
 fwrite($log, $stkCallbackResponse);
 fclose($log);
 
+
 $callbackContent = json_decode($stkCallbackResponse);
+
+// $var_dump($callbackContent);
 
 $ResultCode = $callbackContent->Body->stkCallback->ResultCode;
 $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
@@ -19,6 +20,7 @@ $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Ite
 $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
 if ($ResultCode == 0) {
-    $id = $_SESSION['id'];
-    Data::add_user_transactions($id,$CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumber,$PhoneNumber);
+    Data::add_user_transactions($CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumbe,$PhoneNumber);
+}else{
+    echo "error";
 }

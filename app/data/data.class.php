@@ -48,8 +48,8 @@ class Data {
     static public function update_pass($id,$password) {
         return self::$ds->update_pass($id,$password);
     }
-    static public function add_user_transactions($id,$CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumber,$PhoneNumber) {
-        return self::$ds->add_user_transactions($id,$CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumber,$PhoneNumber);
+    static public function add_user_transactions($CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumber,$PhoneNumber) {
+        return self::$ds->add_user_transactions($CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumber,$PhoneNumber);
     }
     static public function get_users_transactions() {
         return self::$ds->get_users_transactions();

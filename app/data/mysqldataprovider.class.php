@@ -81,7 +81,7 @@ class mysqlDataProvider extends DataProvider
         ]);
 
     }
-    public function update_pass($id,$password)
+    public function update_pass($id, $password)
     {
         $this->execute('UPDATE users SET password = :password  WHERE id = :id', [
             ':password' => $password,
@@ -133,16 +133,20 @@ class mysqlDataProvider extends DataProvider
 
         return $data[0];
     }
-    public function add_user_transactions($id, $CheckoutRequestID, $ResultCode, $amount, $MpesaReceiptNumber, $PhoneNumber)
+    public function add_user_transactions($CheckoutRequestID, $ResultCode, $Amount, $MpesaReceiptNumber, $PhoneNumber)
     {
-        $this->execute('INSERT INTO tinypesa(ID,CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES (:ID :CheckoutRequestID,:ResultCode,:amount,:MpesaReceiptNumber,:PhoneNumber)', [
-            ":Uid" => $id,
-            ":CheckoutRequestID" => $CheckoutRequestID,
-            ":ResultCode" => $ResultCode,
-            ":amount" => $amount,
-            ":MpesaReceiptNumber" => $MpesaReceiptNumber,
-            ":PhoneNumber" => $PhoneNumber
-        ]);
+        $id = $this->query('SELECT id FROM `users` WHERE phone = :phone', [":phone" => $PhoneNumber]);
+        if (!empty($id[0])) {
+            $this->execute('INSERT INTO tinypesa (Uid,CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES (:Uid,:CheckoutRequestID,:ResultCode,:amount,:MpesaReceiptNumber,:PhoneNumber)', [
+                ':Uid' => $id[0]->id,
+                ':CheckoutRequestID' => $CheckoutRequestID,
+                ':ResultCode' => $ResultCode,
+                ':amount' => $Amount,
+                ':MpesaReceiptNumber' => $MpesaReceiptNumber,
+                ':PhoneNumber' => $PhoneNumber
+            ]);
+
+        }
     }
     public function get_users_transactions()
     {
@@ -181,7 +185,7 @@ class mysqlDataProvider extends DataProvider
         return $data[0];
 
     }
-    public function get_all_user_transactions_totals()
+    public function get_all_user_transactions_totals($id)
     {
         $db = $this->connect();
 
