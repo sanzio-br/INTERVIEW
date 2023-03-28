@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title><?php if(!empty($view_bag)){$view_bag ['title'];}?></title>
+    <title><?= $name ?></title>
 
     <meta name="description" content="" />
 
@@ -139,23 +139,43 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class=" menu-item <?php if($name === "index") {echo "active";}?>">
-              <a href="<?php if($_SESSION['role'] ==="SuperAdmin"){echo "index.php";}else{echo "user.php";}?>" class="menu-link">
+            <li class=" menu-item <?php if ($name === "index") {
+              echo "active";
+            } ?>">
+              <a href="<?php if ($_SESSION['role'] === "SuperAdmin") {
+                echo "index.php";
+              } else {
+                echo "user.php";
+              } ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
             <li class="menu-item 
-            <?php 
-            if($name === "users") {echo "active";} 
+            <?php
+            if ($name === "users" || $name === "allUsers" || $name === "addUser" || $name === "activateUsers" || $name === "deactivateUsers" || $name === "updateUsers") {
+              echo "active";
+            }
             ?>"
             <?php
-            if($_SESSION['role'] ==="user"){echo "hidden";}
+            if ($_SESSION['role'] === "user") {
+              echo "hidden";
+            }
             ?>
             >
               <a href="users.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user me-1"></i>
                 <div data-i18n="Analytics">Manage users</div>
+              </a>
+            </li>
+            <li class="menu-item ">
+              <a href="<?php if ($_SESSION['role'] === "SuperAdmin") {
+                echo "../resetPassword.php";
+              } else {
+                echo "resetPassword.php";
+              } ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog me-2"></i>
+                <div data-i18n="Analytics">Reset Password</div>
               </a>
             </li>
             <li class="menu-item ">
@@ -169,7 +189,7 @@
         <!-- / Menu -->
 
         <!-- Layout container -->
-        <?php require("$name.view.php");?>
+        <?php require("$name.view.php"); ?>
 
         <!-- / Layout page -->
       </div>

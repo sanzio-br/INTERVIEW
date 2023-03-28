@@ -14,9 +14,7 @@
                     <?= $view_bag['user'] ?>! 🎉
                   </h5>
                   <p class="mb-4">
-                    You have done <span class="fw-bold">72%</span> more sales
-                    today. Check your new badge in
-                    your profile.
+                    You Are almost done with your contributions 🎉
                   </p>
                   <form action=""
                         method="POST">

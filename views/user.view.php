@@ -14,9 +14,7 @@
                     <?= $view_bag['user'] ?>! 🎉
                   </h5>
                   <p class="mb-4">
-                    You have done <span class="fw-bold">72%</span> more sales
-                    today. Check your new badge in
-                    your profile.
+                    You Are almost done with your contributions 🎉 <?= $_SESSION['phone']; ?>
                   </p>
                   <form action=""
                         method="POST">
@@ -136,20 +134,20 @@
         <div class="col-md-12">
           <ul class="nav nav-pills flex-column flex-md-row mb-3">
             <li class="nav-item">
-            <div class="btn-group">
-                      <button
-                        type="button"
+              <div class="btn-group">
+                <button type="button"
                         class="btn btn-outline-primary dropdown-toggle"
                         data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Filter
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="javascript:void(0);">Month to date</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0);">year to date</a></li>
-                      </ul>
-                    </div>
+                        aria-expanded="false">
+                  Filter
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item"
+                       href="javascript:void(0);">Month to date</a></li>
+                  <li><a class="dropdown-item"
+                       href="javascript:void(0);">year to date</a></li>
+                </ul>
+              </div>
             </li>
           </ul>
           <!-- Striped Rows -->

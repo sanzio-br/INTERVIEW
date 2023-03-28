@@ -12,6 +12,10 @@ class mysqlDataProvider extends DataProvider
     {
         return $this->query('SELECT id_number,name,phone,email,SUM(amount) AS contributions ,active FROM `tinypesa` JOIN `users` ON Uid = id GROUP BY Uid, name');
     }
+    public function get_all_users()
+    {
+        return $this->query('SELECT * FROM users');
+    }
     public function get_transactions()
     {
         return $this->query('SELECT * FROM tinypesa');
@@ -73,6 +77,14 @@ class mysqlDataProvider extends DataProvider
             ':name' => $name,
             ':phone' => $phone,
             ':email' => $email,
+            ':id' => $id
+        ]);
+
+    }
+    public function update_pass($id,$password)
+    {
+        $this->execute('UPDATE users SET password = :password  WHERE id = :id', [
+            ':password' => $password,
             ':id' => $id
         ]);
 

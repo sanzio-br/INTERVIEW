@@ -39,6 +39,6 @@ if (is_post()) {
         //error handling
     } else {
         Data::update_user($id, $id_number, $name, $phone, $email);
-        redirect('users.php');
+        redirect('allUsers.php');
     }
 }
