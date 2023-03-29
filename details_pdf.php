@@ -70,13 +70,15 @@
 
           <div class="container flex-grow-1 container-p-y">
             <!-- Layout Demo -->
-            <!-- <div class="row">
+            <div class="row">
               <div class="col-md-12">
               <div class="divider">
-                        <div class="divider-text">Text</div>
+                        <strong>
+                        <div class="divider-text" style="text-align:center;color:#696CFF;font-size:20px;">TUJIJENGE TRANSACTION HISTORY</div>
+                        </strong>
                       </div>
               </div>
-            </div> -->
+            </div>
 
             <div class="row">
               <div class="col-md-12">
@@ -86,11 +88,11 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th class="text-left">ID</th>
-                          <th class="text-left">Name</th>
-                          <th class="text-left">Mpesa receipt</th>
-                          <th class="text-left">Amount</th>
-                          <th class="text-left">Date</th>
+                          <th style="text-align:left;">ID</th>
+                          <th style="text-align:left;">Name</th>
+                          <th style="text-align:left;">Mpesa receipt</th>
+                          <th style="text-align:left;">Amount</th>
+                          <th style="text-align:left;">Date</th>
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0">
@@ -116,6 +118,21 @@
                             </td>
                           </tr>
                         <?php endforeach; ?>
+                        <hr>
+                        <tr>
+                            <td>
+                            <strong>
+                                Total
+                              </strong>
+                            </td>
+                            <td></td>
+                            <td>
+                            <strong>
+                                Ksh <?= $total ?>
+                              </strong>
+                            </td>
+                            <td></td>
+                          </tr>
                       </tbody>
                     </table>
                   </div>

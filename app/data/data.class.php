@@ -2,8 +2,6 @@
 
 require('dataprovider.class.php');
 
-
-
 class Data {
     static private $ds;
     static public function initialize(DataProvider $data_provider) {
