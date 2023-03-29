@@ -150,11 +150,11 @@ class mysqlDataProvider extends DataProvider
     }
     public function get_users_transactions()
     {
-        return $this->query('SELECT id, name, MpesaReceiptNumber, amount, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id');
+        return $this->query('SELECT id, name, MpesaReceiptNumber, amount,id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id');
     }
     public function get_user_transactions($id)
     {
-        return $this->query("SELECT id, name, MpesaReceiptNumber, amount , time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id AND id = $id");
+        return $this->query("SELECT id, name, MpesaReceiptNumber, amount , id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id AND id = $id");
     }
     public function get_all_transactions_totals()
     {

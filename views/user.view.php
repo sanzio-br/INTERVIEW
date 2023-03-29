@@ -14,7 +14,7 @@
                     <?= $view_bag['user'] ?>! 🎉
                   </h5>
                   <p class="mb-4">
-                    You Are almost done with your contributions 🎉 <?= $_SESSION['phone']; ?>
+                    You Are almost done with your contributions 🎉
                   </p>
                   <form action=""
                         method="POST">
@@ -32,6 +32,7 @@
                              id="amount"
                              name="amount"
                              placeholder="Enter amount to contribute" />
+                      <?= $_SESSION['phone']; ?>
                       <button type="submit"
                               class="btn btn-sm btn-primary">contribute</button>
                     </div>
@@ -75,8 +76,6 @@
                            aria-labelledby="cardOpt3">
                         <a class="dropdown-item"
                            href="javascript:void(0);">View More</a>
-                        <a class="dropdown-item"
-                           href="javascript:void(0);">Delete</a>
                       </div>
                     </div>
                   </div>
@@ -84,8 +83,6 @@
                   <h5 class="card-title mb-2">Ksh
                     <?= $view_bag['total']; ?>
                   </h5>
-                  <small class="text-success fw-semibold"><i
-                       class="bx bx-up-arrow-alt"></i> +72.80%</small>
                 </div>
               </div>
             </div>
@@ -112,8 +109,6 @@
                            aria-labelledby="cardOpt6">
                         <a class="dropdown-item"
                            href="javascript:void(0);">View More</a>
-                        <a class="dropdown-item"
-                           href="javascript:void(0);">Delete</a>
                       </div>
                     </div>
                   </div>
@@ -121,8 +116,6 @@
                   <h5 class="card-title text-nowrap mb-1">Ksh
                     <?= $view_bag['g_total']; ?>
                   </h5>
-                  <small class="text-success fw-semibold"><i
-                       class="bx bx-up-arrow-alt"></i> +28.42%</small>
                 </div>
               </div>
             </div>
@@ -132,31 +125,36 @@
 
       <div class="row">
         <div class="col-md-12">
-          <ul class="nav nav-pills flex-column flex-md-row mb-3">
-            <li class="nav-item">
-              <div class="btn-group">
-                <button type="button"
-                        class="btn btn-outline-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                  Filter
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item"
-                       href="javascript:void(0);">Month to date</a></li>
-                  <li><a class="dropdown-item"
-                       href="javascript:void(0);">year to date</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
           <!-- Striped Rows -->
           <div class="card">
+            <div class="card-header">
+              <h4 class="card-title text-primary text-center">Transactions</h4>
+              <ul
+                  class="nav nav-pills flex-column justify-content-between flex-md-row ">
+                <li class="nav-item">
+                  <div class="mb-3 row">
+                    <div class="col-md-10">
+                      <input class="form-control"
+                             type="date"
+                             value="2021-06-18"
+                             id="html5-date-input" />
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active"
+                     target="_blank"
+                     href="pdf.php?key=<?= $_SESSION['id'] ?>"><i
+                       class="bx bx-file-pdf me-1"></i>Download pdf</a>
+                </li>
+              </ul>
+            </div>
             <div class="table-responsive text-nowrap">
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>ID Number</th>
                     <th>Name</th>
                     <th>Mpesa receipt</th>
                     <th>Amount</th>
@@ -169,6 +167,11 @@
                       <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                         <strong>
                           <?= $transaction->id ?>
+                        </strong>
+                      </td>
+                      <td>
+                        <strong>
+                          <?= $transaction->id_number ?>
                         </strong>
                       </td>
                       <td>
