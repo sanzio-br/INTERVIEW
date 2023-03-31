@@ -11,6 +11,9 @@ class Data {
     static public function get_users() {
         return self::$ds->get_users();
     }
+    static public function get_users_search($search) {
+        return self::$ds->get_users_search($search);
+    }
     static public function get_all_users() {
         return self::$ds->get_all_users();
     }
@@ -55,8 +58,8 @@ class Data {
     static public function get_user_transactions($id) {
         return self::$ds->get_user_transactions($id);
     }
-    static public function search_terms($search) {
-        return self::$ds->search_terms($search);
+    static public function search_user($search) {
+        return self::$ds->search_user($search);
     }
     
     static public function add_term($term, $defination) {

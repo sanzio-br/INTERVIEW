@@ -1,5 +1,3 @@
-<!-- Layout container -->
-<div class="layout-page">
 
   <!-- Content wrapper -->
   <div class="content-wrapper">
@@ -89,5 +87,3 @@
       <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-  </div>
-  <!-- / Layout page -->

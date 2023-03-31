@@ -1,5 +1,4 @@
-<div class="layout-page">
-  <!-- Content wrapper -->
+<!-- Content wrapper -->
   <div class="content-wrapper">
     <!-- Content -->
 
@@ -211,4 +210,3 @@
     <div class="content-backdrop fade"></div>
   </div>
   <!-- Content wrapper -->
-</div>

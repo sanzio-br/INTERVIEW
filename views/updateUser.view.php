@@ -1,5 +1,4 @@
-<!-- Layout container -->
-<div class="layout-page">
+
   <!-- Navbar -->
 
   <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
@@ -164,7 +163,7 @@
                              type="text"
                              id="email"
                              name="email"
-                             value="<?= $model->email; ?>"
+                             value="<?= $model->email?>"
                              placeholder="john.doe@example.com" />
                     </div>
                     <div class="mb-3 col-md-6">
@@ -210,5 +209,3 @@
       <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-  </div>
-  <!-- / Layout page -->

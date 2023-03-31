@@ -1,4 +1,3 @@
-<div class="layout-page">
   <!-- Content wrapper -->
   <div class="content-wrapper">
     <!-- Content -->
@@ -32,7 +31,6 @@
                              id="amount"
                              name="amount"
                              placeholder="Enter amount to contribute" />
-                      <?= $_SESSION['phone']; ?>
                       <button type="submit"
                               class="btn btn-sm btn-primary">contribute</button>
                     </div>
@@ -203,4 +201,3 @@
     <div class="content-backdrop fade"></div>
   </div>
   <!-- Content wrapper -->
-</div>

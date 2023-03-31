@@ -10,10 +10,3 @@ if (empty($_SESSION['email'])) {
     is_user_authorised($role);
     die();
 }
-
-// $view_bag = [
-//     'title' => 'Home',
-//     'user' => $_SESSION['email']
-// ];
-
-// view('index', $view_bag);

@@ -20,7 +20,7 @@ $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Ite
 $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
 if ($ResultCode == 0) {
-    Data::add_user_transactions($CheckoutRequestID,$ResultCode,$amount,$MpesaReceiptNumbe,$PhoneNumber);
+    Data::add_user_transactions($CheckoutRequestID,$ResultCode,$Amount,$MpesaReceiptNumber,$PhoneNumber);
 }else{
     echo "error";
 }

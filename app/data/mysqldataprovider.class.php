@@ -12,6 +12,17 @@ class mysqlDataProvider extends DataProvider
     {
         return $this->query('SELECT id_number,name,phone,email,SUM(amount) AS contributions ,active FROM `tinypesa` JOIN `users` ON Uid = id GROUP BY Uid, name');
     }
+    public function get_users_search($search)
+    {
+        return $this->query("SELECT id_number,name,phone,email,SUM(amount) AS contributions ,active
+        FROM `tinypesa`
+        JOIN `users` ON Uid = id
+        WHERE name LIKE :search or id_number LIKE :search or phone LIKE :search
+        GROUP BY Uid, name", [
+            ':search' => '%' . $search . '%'
+            ]
+        );
+    }
     public function get_all_users()
     {
         return $this->query('SELECT * FROM users');
@@ -150,11 +161,11 @@ class mysqlDataProvider extends DataProvider
     }
     public function get_users_transactions()
     {
-        return $this->query('SELECT id, name, MpesaReceiptNumber, amount,id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id');
+        return $this->query('SELECT id, name, MpesaReceiptNumber, amount,id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id ORDER BY `time` DESC');
     }
     public function get_user_transactions($id)
     {
-        return $this->query("SELECT id, name, MpesaReceiptNumber, amount , id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id AND id = $id");
+        return $this->query("SELECT id, name, MpesaReceiptNumber, amount , id_number, time FROM `users` INNER JOIN `tinypesa` WHERE Uid = id AND id = $id ORDER BY `time` DESC");
     }
     public function get_all_transactions_totals()
     {
@@ -215,10 +226,9 @@ class mysqlDataProvider extends DataProvider
         $this->execute('DELETE FROM users WHERE id = :id', [':id' => $key]);
     }
 
-    public function search_terms($search)
+    public function search_user($search)
     {
-        return $this->query('SELECT * FROM terms WHERE term LIKE :search or defination LIKE :search ', [':search' => '%' . $search . '%']);
-
+        return $this->query('SELECT * FROM users WHERE name LIKE :search or id_number LIKE :search or phone LIKE :search ', [':search' => '%' . $search . '%']);
     }
 
     public function add_user($id_number, $name, $phone, $email)

@@ -151,22 +151,46 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-            <li class="menu-item 
-            <?php
-            if ($name === "users" || $name === "allUsers" || $name === "addUser" || $name === "activateUsers" || $name === "deactivateUsers" || $name === "updateUsers") {
-              echo "active";
-            }
-            ?>"
+           <li class="menu-item <?php
+           if ($name === "users" || $name === "allUsers" || $name === "addUser" || $name === "activateUsers" || $name === "deactivateUsers" || $name === "updateUsers") {
+             echo "active open";
+           }
+           ?>"
             <?php
             if ($_SESSION['role'] === "user") {
               echo "hidden";
             }
             ?>
             >
-              <a href="users.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user me-1"></i>
-                <div data-i18n="Analytics">Manage users</div>
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-user me-1"></i>
+                <div data-i18n="Account Settings">Manage users</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item <?php if ($name === "users") {
+                  echo "active";
+                } ?>">
+                  <a href="users.php" class="menu-link">
+                    <div data-i18n="Account">Contributions</div>
+                  </a>
+                </li>
+                <li class="menu-item <?php if ($name === "allUsers") {
+                  echo "active";
+                } ?>">
+                  <a href="allUsers.php" class="menu-link">
+                    <div data-i18n="Notifications">All Users</div>
+                  </a>
+                </li>
+                <li class="menu-item <?php if ($name === "addUser") {
+                  echo "active";
+                } ?>">
+                  <a href="addUser.php" class="menu-link">
+                    <div data-i18n="Connections">Add Member</div>
+                  </a>
+                </li>
+                </li>
+                </li>
+              </ul>
             </li>
             <li class="menu-item ">
               <a href="<?php if ($_SESSION['role'] === "SuperAdmin") {
@@ -189,8 +213,46 @@
         <!-- / Menu -->
 
         <!-- Layout container -->
-        <?php require("$name.view.php"); ?>
+        <div class="layout-page">
+          <!-- Navbar -->
 
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme sticky-top"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center" <?php if ($_SESSION['role'] != "SuperAdmin" || $name === "index" || $name === "addUser" || $name === "activateUsers" || $name === "deactivateUsers" || $name === "updateUsers") {
+                echo "hidden";
+              } ?>
+              >
+              <form action="" method="GET">
+            <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                    <i class="bx bx-search fs-4 lh-0"></i>
+                    <input type="text"
+                           class="form-control border-0 shadow-none"
+                           placeholder="Search..."
+                           aria-label="Search..."
+                           name="search"
+                           id="search" />
+                </div>
+            </div>
+            </form>
+              </div>
+              <!-- /Search -->
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+        <?php require("$name.view.php"); ?>
+        </div>
         <!-- / Layout page -->
       </div>
 

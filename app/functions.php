@@ -60,3 +60,10 @@ function is_user_authorised($role)
     redirect("user.php");
   }
 }
+function is_user_allowed($role)
+{
+  ensure_user_is_authenticated();
+  if ($role === "SuperAdmin") {
+    return true;
+  }
+}
